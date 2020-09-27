@@ -19,7 +19,7 @@
         // reverse the current level status if needed
     }
 
-## 分枝代码模版 ##
+## 分治代码模版 ##
     // C/C++
     int divide_conquer(Problem *problem, int params) {
         // recursion terminator
@@ -73,3 +73,13 @@
             res += 1;
         return res;
     }
+
+## 周末作业 ##
+### 难难难 ###
+* 组合 [链接](https://leetcode-cn.com/problems/combinations/)
+* 全排列 [链接](https://leetcode-cn.com/problems/permutations/)
+* 全排列 II [链接](https://leetcode-cn.com/problems/permutations-ii/)
+* N 皇后 [链接](https://leetcode-cn.com/problems/n-queens/)
+* 电话号码的字母组合 [链接](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)
+* 22. 括号生成  [链接](https://leetcode-cn.com/problems/generate-parentheses/)
+
