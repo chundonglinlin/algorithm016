@@ -45,6 +45,8 @@
 ## 牛顿迭代 ##
 ### 原理 ###
 * 牛顿迭代法快速寻找平方根 [原理](http://www.matrix67.com/blog/archives/361)
+* 牛顿迭代法（Newton's method）又称为牛顿-拉夫逊（拉弗森）方法（Newton-Raphson method），它是牛顿在17世纪提出的一种在实数域和复数域上近似求解方程的方法。
+* <a href=""><img src="https://raw.githubusercontent.com/chundonglinlin/algorithm016/master/Week_03/3da0627fe7bf6f8bb31102cc5149f651.svg" border="0" /></a>
 
 ### 参考代码 ###
     int mysqrt(int x){
