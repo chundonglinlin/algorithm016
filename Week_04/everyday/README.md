@@ -2,6 +2,24 @@
 
 每日一记
 
+## 2020-09-30 
+
+放假啦，坚持刷题
+
+* Day24每日一题推荐：[买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/)
+```bash
+int maxProfit(int* prices, int pricesSize){
+    int maxprofit = 0;
+    for (int i = 1; i < pricesSize; i++) {
+        //当天比上一天涨
+        int delta = prices[i] - prices[i - 1];
+        if (delta > 0)
+            maxprofit += delta;
+    }
+    return maxprofit;
+}
+```
+
 ## 2020-09-29
 
 * Day23每日一题推荐：[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
