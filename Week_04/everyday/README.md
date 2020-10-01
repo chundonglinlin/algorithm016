@@ -2,6 +2,46 @@
 
 每日一记
 
+## 2020-10-01
+
+今天双节，开心陪娃，晚上陪家人一起吃饭
+
+* Day25 每日一题推荐：[柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/submissions/)
+```bash
+bool lemonadeChange(int* bills, int billsSize){
+    int money[2] = {0};
+    for (int i = 0; i < billsSize; i++) {
+        if (bills[i] == 5) {
+            money[0]++; 
+        } else if (bills[i] == 10) {
+            if (money[0] == 0) {
+                return false;
+            }
+            money[0]--;
+            money[1]++; 
+        } else if (bills[i] == 20) {
+            //10+5;5+5+5
+            if (money[1] >= 1) {
+                if (money[0] >= 1) {
+                    money[0]--;
+                    money[1]--;
+                } else {
+                    return false;
+                }
+            } else {
+                if (money[0] >= 3) {
+                    money[0] -= 3;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+```
+
+
 ## 2020-09-30 
 
 放假啦，坚持刷题
