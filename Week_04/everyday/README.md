@@ -2,6 +2,37 @@
 
 每日一记
 
+## 2020-10-03
+
+一大早陪娃一起做作业，我刷题，她鬼哭狼嚎写作业
+
+* Day27每日一题推荐：[有效的完全平方数](https://leetcode-cn.com/problems/valid-perfect-square/)
+```bash
+bool isPerfectSqrt(int num)
+{
+    bool result = false;
+    //二分法
+    long low = 1, high = num;
+    while (1) {
+        if (low > high) {
+            break;
+        }
+        
+        long mid = (low + high) / 2;
+        long sqrt = mid * mid;
+        if (sqrt > num) {
+            high = mid - 1;
+        } else if (sqrt == num) {
+            result = true;
+            break;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return result;
+}
+```
+
 ## 2020-10-02
 
 今天陪娃观影《姜子牙》有感，难意会主题，但3D画面效果还可
