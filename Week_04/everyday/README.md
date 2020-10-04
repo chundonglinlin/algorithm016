@@ -64,7 +64,7 @@ int majorElement(int *nums, int numsSize)
         maxValue = 0;
     }
     
-    return maxValue
+    return maxValue;
 }
 ```
 
