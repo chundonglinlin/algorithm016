@@ -2,6 +2,72 @@
 
 每日一记
 
+## 2020-10-04
+
+昨天去游乐园转了一圈，玩的很刺激，下午下起了小雨，不得不提前回家。今天刮起了大风，索性不出门在家刷题，陪娃练字、看电视、睡懒觉。
+
+* Day28每日一题推荐：[多数元素](https://leetcode-cn.com/problems/majority-element/description/)
+
+**解法一** （摩尔投票法，遇到相同的数，就投一票，遇到不同的数，就减一票，最后还存在票的数就是众数）
+```bash
+int majorElement(int *nums, int numsSize)
+{
+    int count = 1, maj = nums[0];
+    for (int i = 1; i < numsSize; i++) {
+        if (maj == nums[i]) {
+            count++;
+        } else { 
+            count--;
+        }
+        
+        if (count == 0) {
+            maj = nums[i + 1];
+        }
+    }
+    return maj;
+}
+```
+**解法二** (如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为`n/2`的元素（下标从 0 开始）一定是众数。)
+```bash
+int compare(const void *a, const void *b)
+{
+    return (*(int*)a - *(int*)b);
+}
+
+int majorElement(int *nums, int numsSize)
+{
+    //快排
+    qsort(nums, numsSize, sizeof(int), compare);
+    
+    //获取
+    return nums[numsSize / 2];
+}
+```
+**解法三** （使用hash是第一想法，不过c里面的数组是固定的，容易溢出）
+```bash
+int majorElement(int *nums, int numsSize)
+{
+#define MAX_SIZE 10240
+    int hash[MAX_SIZE];
+    memset(hash, 0, sizeof(int) * MAX_SIZE);
+    int maxCount = 0, maxValue = 0;;
+    for (int i = 0; i < numsSize; i++) {
+        int pos = (nums[i] + MAX_SIZE) % MAX_SIZE;
+        hash[pos]++:
+        if (hash[pos] > maxCount) {
+            maxCount = hash[pos];
+            maxValue = nums[i];
+        }
+    }
+    
+    if (maxCount <= (numsSize / 2)) {
+        maxValue = 0;
+    }
+    
+    return maxValue
+}
+```
+
 ## 2020-10-03
 
 一大早陪娃一起做作业，我刷题，她鬼哭狼嚎写作业
