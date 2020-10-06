@@ -2,6 +2,36 @@
 
 每日一记
 
+## 2020-10-06
+
+昨晚刷题又打了一局游戏，今早起的有点晚，娃说要去跳蹦床，我们急急忙忙出发去，顺便团购代打卡票，玩了蹦床、海洋球、沙子，吃了个午饭，下午娃竟然非要滑冰，我被迫陪娃进滑冰场，娃第一次滑冰竟然就会了（把我给惊得不行，真是厉害！），晚上回家刷题
+
+* Day30每日一题推荐：[两数之和](https://leetcode-cn.com/problems/two-sum/submissions/)
+```bash
+int *twoSum(int *nums, int numsSize, int target, int *returnSize)
+{
+    *returnSize = 0;
+
+    // hash
+#define MAX_SIZE 10240
+    int hash[MAX_SIZE];
+    memset(hash, -1, sizeof(int) * MAX_SIZE);
+    
+    for (int i = 0; i < numsSize; i++) {
+        int pos = hash[(target - nums[i] + MAX_SIZE) % MAX_SIZE];
+        if (pos != -1) {
+            int * result = malloc(sizeof(int) * 2);
+            result[0] = pos;
+            result[1] = i;
+            *returnSize = 2;
+            return result;
+        }
+    }
+    
+    return NULL;
+}
+```
+
 ## 2020-10-05
 
 今天一早起来，准备带娃去爬山，到了山底下人山人海，经历千辛万苦最终我们登顶（爬山真累，她们娘俩早早睡了，我还得刷题）
