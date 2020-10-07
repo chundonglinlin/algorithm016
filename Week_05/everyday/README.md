@@ -2,6 +2,73 @@
 
 每日一记
 
+## 2020-10-07
+
+今天开启单独带娃模式，上午陪娃上英语课，下午陪娃在家刷手机、玩球，然后出去玩了一会轮滑，晚上和家人一起吃了一顿小龙虾（哈哈，闺女的最爱，我只能吃点串串了）
+
+* Day31每日一题推荐：[模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/)
+```bash
+#define max(a, b) (a > b ? a : b)
+
+typedef struct {
+   int x;
+   int y;
+} Node;
+
+int cmp(const void *a, const void *b)
+{
+   Node *temp1 = (Node*)a;
+   Node *temp2 = (Node*)b;
+   
+   int delta = temp1->x - temp2->x;
+   if (delta != 0) {
+      return delta;
+   }
+   
+   return temp1->y - temp1->y;
+}
+
+int robotSim(int *commands, int commandsSize, int **obstacles, int obstaclesSize, int *obstaclesColSize)
+{
+   //0.定义每步移动方向
+   int dx[4] = {0, 1, 0, -1};
+   int dy[4] = {1, 0, -1, 0};
+   
+   //1.定义node存储障碍物坐标，用于将其排序
+   Node *node = malloc(sizeof(Node) * obstaclesSize);
+   for (int i = 0; i < obstaclesSize; i++) {
+      node[i] = obstacles[i];
+   }
+   
+   //2.快排障碍物坐标
+   qsort(node, obstaclesSize, sizeof(Node), cmp);
+   
+   //3.遍历cmd，计算每步的坐标以及是否处于障碍物坐标(di朝向)
+   int x = 0, y = 0, di = 0;
+   Node cur;
+   for (int i = 0; i < commandsSize; i++) {
+      if (commands[i] == -2) {
+         di = （di + 3） % 4;
+      } else if (commands[i] == -1) {
+         di = （di + 1） % 4;
+      } else {
+         for (int j = 0; i < commands[i]; i++) {
+            cur.x = x + dx[di];
+            cur.y = y + dy[di];
+            if (bsearch(&cur, node, obstaclesSize, sizeof(Node), cmp) == NULL) {
+               x = cur.x;
+               y = cur.y;
+               result = max(result, x * x + y * y);
+            }
+         }
+      }
+   }
+   return result;
+}
+
+```
+
+
 ## 2020-10-06
 
 昨晚刷题又打了一局游戏，今早起的有点晚，娃说要去跳蹦床，我们急急忙忙出发去，顺便团购代打卡票，玩了蹦床、海洋球、沙子，吃了个午饭，下午娃竟然非要滑冰，我被迫陪娃进滑冰场，娃第一次滑冰竟然就会了（把我给惊得不行，真是厉害！），晚上回家刷题
