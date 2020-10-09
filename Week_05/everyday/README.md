@@ -4,13 +4,35 @@
 
 ## 2020-10-09
 
-开始上班了，昨晚到京挺晚，半夜吃了个饭，昨天的题目没认真对待，今天挤时间
+开始上班了，昨晚到京挺晚，半夜吃了个饭，昨天的题目没认真对待，今天挤时间；22点开始刷题。。。
 
 * Day33每日一题推荐：[最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
 
-思路： 晚上再刷吧
+思路： 
+状态转移方程：dp
 ```bash
-
+#define max(a, b) (a > b ? a : b)
+int longestCommonSubSequence(char *text1, char *text2)
+{
+   int len1 = strlen(text1), len2 = strlen(text2);
+   int *dp = calloc(len2 + 1, sizeof(int));
+   
+   for (int i = 1; i < len1; i++) {
+      int pre = 0;//1.每行起始作为dp[i-1][j-1] 
+      for (int j = 1; j < len2; j++) {
+         int next = dp[j]; // dp[i-1][j]:目的是j++后变成左上角dp[i-1][j-1]
+         if (text1[i - 1] == text2[j - 1]) {
+            dp[j] = pre + 1;// 两个相等+1，状态是dp[i-1][j-1]即pre
+         } else {
+            dp[j] = max(dp[j], dp[j - 1]);
+         }
+         
+         pre = next;
+      }
+   }
+   
+   return dp[len2];
+}
 ```
 
 ## 2020-10-08
