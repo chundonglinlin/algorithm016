@@ -2,6 +2,38 @@
 
 每日一记
 
+## 2020-10-09
+
+开始上班了，昨晚到京挺晚，半夜吃了个饭，昨天的题目没认真对待，今天挤时间
+
+* Day33每日一题推荐：[最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+
+思路： 晚上再刷吧
+```bash
+
+```
+
+## 2020-10-08
+
+上午陪老婆规整了一下客厅，闺女自己在那玩的不亦乐乎，下午收拾下启程准备上班。。。
+
+* Day32每日一题推荐：[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+
+解法一：参考官方解法，使用动态规划（状态转移方程 max = max(f(n-1) + an, an）
+```bash
+#define max(a, b) (a > b ? a : b)
+int maxSubArray(int *nums, int numsSize)
+{
+   int maxSub = nums[0], pre = 0;
+   for (int i = 0; i < numsSize; i++) {
+      pre = max(nums[i] + pre, nums[i]);
+      maxSub = max(maxSub, pre);
+   }
+   
+   return maxSub;
+}
+```
+
 ## 2020-10-07
 
 今天开启单独带娃模式，上午陪娃上英语课，下午陪娃在家刷手机、玩球，然后出去玩了一会轮滑，晚上和家人一起吃了一顿小龙虾（哈哈，闺女的最爱，我只能吃点串串了）
