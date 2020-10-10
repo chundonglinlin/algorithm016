@@ -2,11 +2,37 @@
 
 每日一记
 
+## 2020-10-11
+
+今天早上得早点起来，和朋友一起去趟天津挂牌，正好刷完题目再睡吧。。
+* Day35每日一题推荐：[替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/submissions/)
+
+思路：比较简单的题目，从字符串s拷贝到新申请的数组里
+```bash
+char *replaceSpace(char *s) 
+{
+   int len = strlen(s);
+   char *result = malloc(3 * len + 1);
+   char *p = result;
+   for (int i = 0; i < len; i++) {
+      if (s[i] == ' ') {
+         strcpy(p, "%20");
+         p += 3;
+      } else {
+         *p++ = s[i];
+      }
+   }
+   
+   return result;
+}
+```
+
 ## 2020-10-10
 
 今天组内同事都来了，布置了一下下半年的规划，还是很多工作等待去完成，希望快速输出更有效率的产品，现在先刷题了。。。
 * Day34每日一题推荐：[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/submissions/)
 
+思路：将二维数组看成一维数组来遍历，使用二分法查找，注意下标转换
 ```bash
 bool searchMatrix(int **matrix, int matrixSize, int *matrixColSize, int target)
 {
