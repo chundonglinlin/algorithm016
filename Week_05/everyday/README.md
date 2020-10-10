@@ -2,6 +2,43 @@
 
 每日一记
 
+## 2020-10-10
+
+今天组内同事都来了，布置了一下下半年的规划，还是很多工作等待去完成，希望快速输出更有效率的产品，现在先刷题了。。。
+* Day34每日一题推荐：[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/submissions/)
+
+```bash
+bool searchMatrix(int **matrix, int matrixSize, int *matrixColSize, int target)
+{
+   int row = matrixSize;
+   if (row == 0) {
+      return false;
+   }
+   
+   int col = *matrixColSize;
+   
+   // 二分查找
+   //当前元素下标以及值
+   int idx, element;
+   //左右边界
+   int left = 0, right = row * col - 1;
+   while (left <= right) {
+      idx = (left + right) / 2;
+      element = matrix[idx / n][ idx % n];
+      
+      if (element == target) {
+         return true;
+      } else if ( element < target) {
+         left = idx + 1;
+      } else {
+         right = idx -1;
+      }
+   }
+   
+   return false;
+}
+```
+
 ## 2020-10-09
 
 开始上班了，昨晚到京挺晚，半夜吃了个饭，昨天的题目没认真对待，今天挤时间；22点开始刷题。。。
