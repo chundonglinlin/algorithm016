@@ -2,6 +2,40 @@
 
 每日一记
 
+## 2020-10-12
+
+今天起的挺早，困得不行，坐着公交车去上班，然后发现全网在刷青疫情，把我给急的不行，中午临时决定去定点做个检测，到了地方后发现人超级多，都是有青旅史，哎，晚上回来刷题吧
+* Day36每日一题推荐：[最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/submissions/)
+
+思路：
+参考了一下官方解法，先分别按行列，累计加得出到达当前节点的值，然后开始从当前节点选择临近上一节点的最小值。并累加，直至得出所有节点累计值，选择最后一个值返回。
+```bash
+int minPathSum(int **grid, int gridSize, int *greoColSize)
+{
+   int row = gridSize, col = gridColSize[0];
+   int **dp = grid;
+   
+   // row
+   for (int i = 1; i < row; i++) {
+      dp[i][0] = dp[i - 1][0] + grid[i][0];
+   }
+   
+   // col
+   for (int j = 0; j < col; j++) {
+      dp[0][j] = dp[0][j - 1] + grid[0][j];
+   }
+   
+   // 累计值
+   for (int i = 1; i < row; i++) {
+      for (int j = 1; j < col; j++) {
+         dp[i][j] = fmin(dp[i - 1][j], dp[i][j -1) + grid[i][j];
+      }
+   }
+   
+   return dp[row - 1][col -1];
+}
+```
+
 ## 2020-10-11
 
 今天早上得早点起来，和朋友一起去趟天津挂牌，正好刷完题目再睡吧。。
