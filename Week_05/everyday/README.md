@@ -2,6 +2,28 @@
 
 每日一记
 
+## 2020-10-13
+
+今天挺冷，终于认真的写了代码又测试了一下，中午又做了个核酸，哎，浪费
+
+* Day37每日一题推荐：[零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+```bash
+int coinsChange(int *coins, int coinsSize, int amount)
+{
+   int dp[amount + 1];
+   dp[0] = 0;
+   for (int i = 1; i <= amount; i++) {
+      for (int j = 0; j < coinsSize; j++) {
+         if (coins[j] <= i) {
+            dp[i] = min[dp[i], dp[i - conins[j]] + 1);
+         }
+      }
+   }
+   
+   return dp[amount] > amount ?  -1 : dp[amount];
+}
+```
+
 ## 2020-10-12
 
 今天起的挺早，困得不行，坐着公交车去上班，然后发现全网在刷青疫情，把我给急的不行，中午临时决定去定点做个检测，到了地方后发现人超级多，都是有青旅史，哎，晚上回来刷题吧
