@@ -5,6 +5,8 @@
 ## 2020-10-14
 
 今天似乎有点偷懒，工作上就完成一点，还有很多事情等着做，一直在思考和总结能输出一款牛逼产品，晚上和同事吃了饭（喜得二胎，羡慕），现在才刷题。。。
+
+* Day38每日一题推荐：[打家劫舍II](https://leetcode-cn.com/problems/house-robber-ii/description/)
 ```bash
 int rob(int *nums, int numsSize)
 {
