@@ -2,6 +2,27 @@
 
 每日一记
 
+## 2020-10-14
+
+今天似乎有点偷懒，工作上就完成一点，还有很多事情等着做，一直在思考和总结能输出一款牛逼产品，晚上和同事吃了饭（喜得二胎，羡慕），现在才刷题。。。
+```bash
+int rob(int *nums, int numsSize)
+{
+   if (numsSize == 1) {
+      return nums[0];
+   }
+   
+   int *dp1 = calloc(numsSize + 1, sizeof(int));
+   int *dp2 = calloc(numsSize + 1, sizeof(int));
+   for (int i = 2; i < numsSize; i++) {
+      dp1[i] = fmin(dp1[i - 1], dp1[i - 2] + nums[i - 2]);
+      dp2[i] = fmin(dp1[i - 1], dp2[i - 2] + nums[i - 1]);
+   }
+   
+   return fmin(dp1[numsSize], dp2[numsSize]);
+}
+```
+
 ## 2020-10-13
 
 今天挺冷，终于认真的写了代码又测试了一下，中午又做了个核酸，哎，浪费
