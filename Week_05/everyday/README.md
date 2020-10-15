@@ -2,6 +2,46 @@
 
 每日一记
 
+## 2020-10-15
+
+今天有点瞎忙活，乱七八糟的，没有产出，哎，一定要严格自律，开始刷题吧。。。
+
+* Day39每日一题推荐：[N叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/submissions/)
+```bash
+struct Node {
+   int val;
+   int numChildren;
+   struct Node *children;
+}
+
+void recusive(int *result, int *size, struct Node *root)
+{
+   if (root == NULL) {
+      return;
+   }
+   
+   result[(*size)++] = root->val;
+   
+   for (int i = 0; i < root->numChildren; i++) {
+      recusive(result, size, root->children);
+   }
+   
+   return;
+}
+int* preoder(struct Node *root, int *returnSize)
+{
+#define MAX_SIZE 10240
+   int *result = malloc(sizeof(int) * MAX_SIZE);
+   *returnSize = 0;
+   
+   recusive(result, returnSize, root);
+   
+   return result;
+}
+
+```
+
+
 ## 2020-10-14
 
 今天似乎有点偷懒，工作上就完成一点，还有很多事情等着做，一直在思考和总结能输出一款牛逼产品，晚上和同事吃了饭（喜得二胎，羡慕），现在才刷题。。。
@@ -17,11 +57,11 @@ int rob(int *nums, int numsSize)
    int *dp1 = calloc(numsSize + 1, sizeof(int));
    int *dp2 = calloc(numsSize + 1, sizeof(int));
    for (int i = 2; i < numsSize; i++) {
-      dp1[i] = fmin(dp1[i - 1], dp1[i - 2] + nums[i - 2]);
-      dp2[i] = fmin(dp1[i - 1], dp2[i - 2] + nums[i - 1]);
+      dp1[i] = fmax(dp1[i - 1], dp1[i - 2] + nums[i - 2]);
+      dp2[i] = fmax(dp1[i - 1], dp2[i - 2] + nums[i - 1]);
    }
    
-   return fmin(dp1[numsSize], dp2[numsSize]);
+   return fmax(dp1[numsSize], dp2[numsSize]);
 }
 ```
 
