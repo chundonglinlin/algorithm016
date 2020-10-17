@@ -2,11 +2,51 @@
 
 每日一记
 
+## 2020-10-17
+
+今天主要是睡觉，感觉一周没睡醒，所以一直睡到了下午两点，然后来公司加班一会，结果朋友要一起打游戏，哎，玩了一下午，懈怠了，疲了，现在准备刷题  
+* Day41每日一题推荐：[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+```bash
+int search(int* nums, int numsSize, int target){
+    int n = numsSize;
+    if (!n) {
+        return -1;
+    }
+
+    if (n == 1) {
+        return nums[0] == target ? 0 : -1;
+    }
+
+    // 二分法查找
+    int l = 0, r = n - 1;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        }
+
+        if (nums[0] <= nums[mid]) {
+            if (nums[0] <= target && target < nums[mid]) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        } else {
+            if (nums[mid] < target && target <= nums[n - 1]) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+    }
+    return -1;
+}
+```
 
 ## 2020-10-16
 
-今天忙忙啥，提测，方案推进等，晚上一起吃了个饭，吼吼，导致回家洗漱完不想刷题了，（老师的直播答疑参与了10分钟忙着吃饭去了，哎，）
-* Day40每日一题推荐：[矩形区域不超过K的最大数值](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/)
+今天忙忙啥，提测，方案推进等，晚上一起吃了个饭，吼吼，导致回家洗漱完不想刷题了，（老师的直播答疑参与了10分钟忙着吃饭去了，哎，）  
+* Day40每日一题推荐：[矩形区域不超过K的最大数值](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/)  
 思路：
 1、题目翻译：题目意思是求一个二维数组内的一个矩形的和res（1 ×1，1×2，2×2…），且res 是小于等于k的最大值。
 如果里面某一个元素或者一个求和等于k的话，那么res直接就是k。
