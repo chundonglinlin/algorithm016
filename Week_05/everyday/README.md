@@ -2,6 +2,50 @@
 
 每日一记
 
+
+## 2020-10-16
+
+今天忙忙啥，提测，方案推进等，晚上一起吃了个饭，吼吼，导致回家洗漱完不想刷题了，（老师的直播答疑参与了10分钟忙着吃饭去了，哎，）
+* Day40每日一题推荐：[矩形区域不超过K的最大数值](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/)
+思路：
+1、题目翻译：题目意思是求一个二维数组内的一个矩形的和res（1 ×1，1×2，2×2…），且res 是小于等于k的最大值。
+如果里面某一个元素或者一个求和等于k的话，那么res直接就是k。
+2、解题思路：采用暴力破解法，
+先是最左列left到最右列right的遍历，
+然后最top行到最bottom行的遍历求助，且保存最大的res值，最后返回即可。
+3、知识点：二维数组的内存分配，sum[m]是定义的每行的求和值，
+第一步：0与0~matrixSize的组成的矩形块，求出最大的res值；
+第二步：1与 1：matrixSize的行组成的矩形块的最大值。
+第三步: 列也是按照这个思路求解。
+```bash
+int maxSumSubMatrix(int **matrix, int matrixSize, int *matrixColSize, int k)
+{
+   int *sum = (int*)malloc(sizeof(int) * matrixSize);
+   int res = -100000;
+   int tmp;
+   for(int i = 0; i < *matrixColSize; i++){
+     memset(sum, 0, sizeof(int) * matrixSize);    
+     for(int j = i; j < *matrixColSize; j++){ //组成一个列矩阵，[i,j],从左往右遍历。i固定，j移动
+         for(int  m = 0; m < matrixSize; m++){
+             sum[m] += matrix[m][j];  //按照每行计算的规则，求每一行的和（j）
+         }
+
+         for(int m = 0; m < matrixSize; m++){
+             int tmp = sum[m];
+             if(tmp <= k && tmp > res ) res = tmp;
+             for(int n = m + 1; n < matrixSize; n++) {
+                 tmp += sum[n];
+                 if(tmp <= k && tmp > res) res = tmp;
+              }
+         }
+     }
+   }
+   free(sum);
+   return res;
+}
+```bash
+
+
 ## 2020-10-15
 
 今天有点瞎忙活，乱七八糟的，没有产出，哎，一定要严格自律，开始刷题吧。。。
