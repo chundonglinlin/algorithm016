@@ -2,6 +2,153 @@
 
 每日一记
 
+## 2020-10-18
+
+今天一早去把材料还给朋友，聊了一阵，成年人的世界都想走捷径成功，好难呀，如果努力了方法不对很难成功，不努力更不会成功。。。。。。。。。  
+* Day42每日一题推荐：[单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/)
+思路：这道题目对我来说，感觉很难，抄一抄思路
+1）使用前缀树，前缀树参考208题,[实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
+2）DSF
+```bash
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+typedef struct TrieNode{
+    bool isEnd;
+    struct TrieNode* map[26];
+} Trie;
+
+/** Inserts a word into the trie. */
+void trieInsert(Trie* obj, char * word) {
+    int len = strlen(word), pos;
+
+    for (int i = 0; i < len; i++) {
+        pos = word[i] - 'a';
+        if (obj->map[pos] == NULL) {
+            obj->map[pos] = calloc(sizeof(Trie), 1);
+        }
+        obj = obj->map[pos];
+    }
+    
+    obj->isEnd = true;
+}
+
+/** Returns if the word is in the trie. */
+bool trieSearch(Trie* obj, char * word) {
+    for (int i = 0; word[i]; i++) {
+        if (obj->map[word[i] - 'a'] == NULL) {
+            return false;
+        }
+        
+        obj = obj->map[word[i] - 'a'];
+    }
+    
+    if (obj->isEnd) {           /* 这个地方有个*小改动*，每次搜索到一个单词，就把这个单词从 */
+        obj->isEnd = false;     /* 前缀树中删除（把结束结点的结束标志取消），这样做可以避免重复 */
+        return true;
+    }
+    return false;
+}
+
+/** Returns if there is any word in the trie that starts with the given prefix. */
+bool trieStartsWith(Trie* obj, char * prefix) {
+    for (int i = 0; prefix[i]; i++) {
+        if (obj->map[prefix[i] - 'a'] == NULL)
+            return false;
+
+        obj = obj->map[prefix[i] - 'a'];
+    }
+
+    return true;
+}
+
+void trieFree(Trie* obj) {
+    for (int i = 0; i < 26; i++)
+        if (obj->map[i] != NULL)
+            trieFree(obj->map[i]);
+    
+    free(obj);
+}
+/* 以上我都直接套用了208题的代码（个别部分进行了改动） */
+
+/* 定义一些全局变量，不然函数的入口参数会很多 */
+bool seen[500][500];
+int row, col;
+char *prefix;
+Trie* trieTree;
+
+/* 入口参数“pos”是用来更新prefix的 */
+void traceBack(int r, int c, int pos, char **board, int* returnSize, char **res) {
+    /* 该前缀构成的单词是字典树中的单词，将prefix添加到res中 */
+    if (trieSearch(trieTree, prefix)) {
+        res[*returnSize] = malloc(sizeof(char) * (strlen(prefix) + 1));
+        strcpy(res[(*returnSize)++], prefix);
+    }
+    
+    int dr[] = {1, 0, -1, 0};       /* dr,dc数组共同完成点的向下、向右、向上、向左 */
+    int dc[] = {0, 1, 0, -1};
+    int di = 0;                     /* di为方向控制器 */
+    seen[r][c] = true;              /* 现在在（r，c）这个点，将seen[r][c]置为true */
+
+    for (int di = 0; di < 4; di++) {
+        int rr = r + dr[di];
+        int cc = c + dc[di]; 
+        if (rr >= 0 && rr < row && cc >= 0 && cc < col && !seen[rr][cc]) {
+            prefix[pos] = board[rr][cc];
+            if (trieStartsWith(trieTree, prefix))
+                traceBack(rr, cc, pos + 1, board, returnSize, res);
+        }
+            
+    }
+
+    /* 回溯法非常重要的一步，退一步就将状态还原为原来的样子 */
+    prefix[pos] = '\0';
+    seen[r][c] = false; 
+    return;
+}
+
+char ** findWords(char** board, int boardSize, int* boardColSize, char ** words, int wordsSize, int* returnSize){
+    char **res = (char **)malloc(sizeof(char *) * wordsSize);
+    *returnSize = 0;
+    row = boardSize, col = *boardColSize;
+
+    /* 同一个单元格内的字母在一个单词中不允许被重复使用，搜索一个单词时用seen标记该字母是否被使用 */
+    memset(seen, 0, sizeof(seen));
+    
+    /* 初始化前缀树 */
+    trieTree = (Trie *)calloc(sizeof(Trie), 1);
+
+    for (int i = 0; i < wordsSize; i++) {
+        /* 将words插入前缀树 */
+        trieInsert(trieTree, words[i]);
+    }
+ 
+    /*   
+    * prefix为搜索过程中构成的前缀，每搜索一步，prefix更新一下
+    * 引入prefix可以方便的利用前缀树的相关函数进行剪枝
+    */
+    prefix = (char *)calloc(sizeof(char), row * col + 1);
+
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            prefix[0] = board[i][j];
+
+            if (trieStartsWith(trieTree, prefix) == false) {
+                continue
+            }
+            traceBack(i, j, 1, board, returnSize, res);
+        }
+    }
+ 
+    // 释放内存
+    trieFree(trieTree);
+
+    return res;
+}
+```bash
+
+
 ## 2020-10-17
 
 今天主要是睡觉，感觉一周没睡醒，所以一直睡到了下午两点，然后来公司加班一会，结果朋友要一起打游戏，哎，玩了一下午，懈怠了，疲了，现在准备刷题  
@@ -130,7 +277,7 @@ int* preoder(struct Node *root, int *returnSize)
 
 今天似乎有点偷懒，工作上就完成一点，还有很多事情等着做，一直在思考和总结能输出一款牛逼产品，晚上和同事吃了饭（喜得二胎，羡慕），现在才刷题。。。
 
-* Day38每日一题推荐：[打家劫舍II](https://leetcode-cn.com/problems/house-robber-ii/description/)
+* Day38每日一题推荐：[打家劫舍II](https://leetcode-cn.com/problems/house-robber-ii/description/)  
 ```bash
 int rob(int *nums, int numsSize)
 {
@@ -153,7 +300,7 @@ int rob(int *nums, int numsSize)
 
 今天挺冷，终于认真的写了代码又测试了一下，中午又做了个核酸，哎，浪费
 
-* Day37每日一题推荐：[零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+* Day37每日一题推荐：[零钱兑换](https://leetcode-cn.com/problems/coin-change/)  
 ```bash
 int coinsChange(int *coins, int coinsSize, int amount)
 {
@@ -173,11 +320,11 @@ int coinsChange(int *coins, int coinsSize, int amount)
 
 ## 2020-10-12
 
-今天起的挺早，困得不行，坐着公交车去上班，然后发现全网在刷青疫情，把我给急的不行，中午临时决定去定点做个检测，到了地方后发现人超级多，都是有青旅史，哎，晚上回来刷题吧
+今天起的挺早，困得不行，坐着公交车去上班，然后发现全网在刷青疫情，把我给急的不行，中午临时决定去定点做个检测，到了地方后发现人超级多，都是有青旅史，哎，晚上回来刷题吧  
 * Day36每日一题推荐：[最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/submissions/)
 
-思路：
-参考了一下官方解法，先分别按行列，累计加得出到达当前节点的值，然后开始从当前节点选择临近上一节点的最小值。并累加，直至得出所有节点累计值，选择最后一个值返回。
+思路：  
+参考了一下官方解法，先分别按行列，累计加得出到达当前节点的值，然后开始从当前节点选择临近上一节点的最小值。并累加，直至得出所有节点累计值，选择最后一个值返回。  
 ```bash
 int minPathSum(int **grid, int gridSize, int *greoColSize)
 {
