@@ -146,8 +146,7 @@ char ** findWords(char** board, int boardSize, int* boardColSize, char ** words,
 
     return res;
 }
-```bash
-
+```
 
 ## 2020-10-17
 
@@ -230,7 +229,7 @@ int maxSumSubMatrix(int **matrix, int matrixSize, int *matrixColSize, int k)
    free(sum);
    return res;
 }
-```bash
+```
 
 
 ## 2020-10-15
