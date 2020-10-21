@@ -4,8 +4,8 @@
 
 ## 2020-10-21
 
-今天现场支持，很累，发现了延播的很多bug，急需找时间优化一下，完善完善，凌晨起来刷题吧，明天一早去现场。。。
-**** Day45每日一题推荐：[岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
+今天现场支持，很累，发现了延播的很多bug，急需找时间优化一下，完善完善，凌晨起来刷题吧，明天一早去现场。。。  
+* Day45每日一题推荐：[岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
 * 思路：xxxx
 ```bash
 void dfs(char** grid, int row, int col, int rowSize, int colSize)
@@ -47,5 +47,13 @@ int numIslands(char** grid, int gridSize, int* gridColSize){
 
     return num_islands;
 }
+```
+
+## 2020-10-20
+
+今天临时叫去现场支持，排查hls无发播放问题，ios很神奇，最终发现是推流软件没关闭“消除隔行”，哇哇。。。。。  
+*Day44每日一题推荐：[实现Trie (前缀树）](https://leetcode-cn.com/problems/implement-tri)-prefix-tree/#/description）
+```bash
+
 ```
 
