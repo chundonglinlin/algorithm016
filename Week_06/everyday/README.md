@@ -2,6 +2,24 @@
 
 每日一记
 
+## 2020-10-22
+
+今天一早起来去现场，看起来北京城也是很大，坐车1个小时才到达目的地（不如打车快），在现场刷一道简单的题目  
+* Day46每日一题推荐：[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)  
+* 思路： 寻找连续子序列之和的最大值，定义初始化sum，每加一个元素判定是否符合最大值，若是则加上，否则重置从当前值开始重新累计
+```bash
+int maxSubSum(int *nums, int numsSize)
+{
+    int result = nums[0], sum = 0;
+    for (int i = 0; i < numsSize; i++) {
+        sum = fmax(sum + nums[i], nums[i]);
+        result = fmax(result, sum);
+    }
+    
+    return result;
+}
+```
+
 ## 2020-10-21
 
 今天现场支持，很累，发现了延播的很多bug，急需找时间优化一下，完善完善，凌晨起来刷题吧，明天一早去现场。。。  
