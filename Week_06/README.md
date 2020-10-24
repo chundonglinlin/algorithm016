@@ -57,6 +57,17 @@ int divide_conquer(Problem *problem, int params) {
 
 ### 2.DP例题解析
 
+* **Fibonacci数列**
+    > 
+    ```bash
+    int fib(int n) {
+      return n <= 1 ? n : fib(n -1) + fib(n - 2);
+    }
+    ```
+
+* **路径计数**
+
+
 ### 3.DP例题解析
 
 ### 4.实战题目解析
