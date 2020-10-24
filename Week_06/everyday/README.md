@@ -2,10 +2,85 @@
 
 每日一记
 
+## 2020-10-23  
+
+周五啦，现场一上午保障工作（副市长都来了），下午回公司，晚上和同事吃了烤全羊，还是非常香的，半夜飞回家，耽搁了一天刷题。。。。
+* Day47 每日一题推荐：[单词接龙](https://leetcode-cn.com/problems/word-ladder/description/)  
+* 思路：  
+```bash
+int canChange(char *word, char *match, int len)
+{
+    int ret = 0;
+    for (int i = 0; i < len; i++) {
+        // 出现两个字母不同时，返回0
+        if (word[i] != match[i]) {
+            if (ret == 1) {
+                // 第二次不相同时，直接返回0
+                return 0;
+            } else {
+                // 出现一次不相同，标识ret=1
+                ret = 1;
+            }
+        }
+    }
+
+    return ret;
+}
+
+int ladderLength(char *beginWord, char *endWord, char **wordList, int wordListSize)
+{
+#define MAX_SIZE 10240
+    char *queue[MAX_SIZE] = {0}, mark[MAX_SIZE] = {0}, *wordTemp;
+    int head = 0, tail = 0;
+
+    int count = 1, queSize = 0;
+    int wordLen = strlen(wordList[0]);
+
+    /*  判断结束符在不在list 中 */
+    for (int i = 0; i < wordListSize; i++) {
+        if(strcmp(endWord, wordList[i]) == 0) {
+            break;
+        }
+
+        if (i == wordListSize - 1) {
+            // 无匹配
+            return 0;
+        }
+    }
+
+    /* beginWord 入队 */
+    queue[tail++]  = beginWord;
+
+    while (head != tail) {
+        queSize = (tail - head + MAX_SIZE) % MAX_SIZE;
+        for (int i = 0; i < queSize; i++) {
+            /* 出队 */
+            wordTemp = queue[head];
+            if (strcmp(wordTemp, endWord) == 0) {
+                return count;
+            }
+            head = (head + 1) % MAX_SIZE;
+
+            for (int j = 0; j < wordListSize; j++) {
+                if (mark[j] == 0 && canChange(wordTemp, wordList[j], wordLen) == 1) {
+                    mark[j] = 1;
+                    if ((tail + 1) % MAX_SIZE != head) {
+                        queue[tail] = wordList[j];
+                        tail = (tail + 1) % MAX_SIZE;
+                    }
+                }
+            }
+        }
+        count++;
+    }
+    return 0;
+}
+```
+
 ## 2020-10-22
 
 今天一早起来去现场，看起来北京城也是很大，坐车1个小时才到达目的地（不如打车快），在现场刷一道简单的题目  
-* Day46每日一题推荐：[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)  
+* Day46 每日一题推荐：[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)  
 * 思路： 寻找连续子序列之和的最大值，定义初始化sum，每加一个元素判定是否符合最大值，若是则加上，否则重置从当前值开始重新累计
 ```bash
 int maxSubSum(int *nums, int numsSize)
