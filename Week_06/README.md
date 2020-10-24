@@ -58,10 +58,24 @@ int divide_conquer(Problem *problem, int params) {
 ### 2.DP例题解析
 
 * **Fibonacci数列**
-    > 
+    > 时间复杂度最大O(n^2)
     ```bash
     int fib(int n) {
       return n <= 1 ? n : fib(n -1) + fib(n - 2);
+    }
+    ```
+    优化点，增加重复步骤的存储
+    ```bash
+    int fib(int n, int *memo) {
+      if (n <= 0) {
+        return 0;
+      } else if (n == 1) {
+        return 1;
+      } else if (memo[n] == 0) {
+        memo[n] = fib(n -1) + fib(n - 2);
+      }
+      
+      return memo[n];
     }
     ```
 
