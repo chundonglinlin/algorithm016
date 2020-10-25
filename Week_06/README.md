@@ -85,7 +85,7 @@ int divide_conquer(Problem *problem, int params) {
     2.存储中间状态：opt[i]  
     3.递推公式（状态转移方程或DP方程）  
       Fib：opt[i]=opt[n-1]+opt[n-2]  
-      二位路径：opt[i, j]=opt[i+1][j]+opt[i][j+1](且判断a[i][j]是否为空)
+      二位路径：opt[i, j]=opt[i+1][j]+opt[i][j+1] (且判断a[i][j]是否为空)
     
 
 ### 3.DP例题解析
@@ -97,14 +97,21 @@ int divide_conquer(Problem *problem, int params) {
 2.理解复杂逻辑的关键  
 3.也是职业进阶的要点要领  
 
-> - 参考链接：
+> - 参考链接：  
 [62. 不同路径](https://leetcode-cn.com/problems/unique-paths/)  
 [63. 不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/)  
-[1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
-[【MIT课程】动态规划 I - 最短路径算法](https://www.bilibili.com/video/av53233912?from=search&seid=2847395688604491997)
+[1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)  
+[【MIT课程】动态规划 I - 最短路径算法](https://www.bilibili.com/video/av53233912?from=search&seid=2847395688604491997)  
 
 
 ### 4.实战题目解析
+
+> - [爬楼梯]()  
+思路：参考Fib  
+
+> - [三角形最小路径和](https://leetcode-cn.com/problems/triangle/description/)  
+思路：  
+
 
 ### 5.实战题目解析
 
