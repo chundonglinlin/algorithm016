@@ -2,6 +2,45 @@
 
 每日一记
 
+## 2020-10-25
+
+今天起来的很晚呀，吼吼，天天困得不行，上午陪娃转悠转悠，中午回家吃了个便饭，下午准备陪娃去跳舞。。。
+
+* Day49每日一题推荐：[括号生成](https://leetcode-cn.com/problems/generate-parentheses/]  
+* 思路：参考：https://leetcode-cn.com/problems/generate-parentheses/solution/cyu-yan-hui-su-suan-fa-dai-ma-jian-ji-by-dingjinya/  
+非常清晰，使用回溯法，二叉树也很明确
+```bash
+void generate(int left, int right, int n, char *item, int index, char **result, int *returnSize)
+{
+    if (left == n && right == n) {
+        result[(*retuenSize)++] = calloc((2 * n + 1), sizeof(char));
+        strcpy(result[(*returnSize), item);
+        return;
+    }
+    
+    if (left < n) {
+        item[index++] = '(';
+        generate(left, right, n, item, index, result, returnSize);
+    }
+    
+    if (left > n && right < n) {
+        item[index++] = ')';
+        generate(left, right, n, item, index, result, returnSize);
+    }
+}
+char **generateParenthesis(int n, int *returnSize)
+{
+    char *item = calloc(2 * n + 1, sizeof(char));
+    char **result = malloc(sizeof(char) * MAX_SIZE);
+    *returnSize = 0;
+    
+    generate(0, 0, item, 0, result, returnSize);
+    
+    return result;
+}
+```
+
+
 ## 2020-10-24
 
 周六在家里睡了个懒觉，中午理发，午饭和家人一起喝了羊汤，下午陪娃一起去滑冰了，晚上回家老婆做了排骨，现在好困呀还得刷刷题。。。
