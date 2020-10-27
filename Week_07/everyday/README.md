@@ -1,5 +1,30 @@
 学习笔记
 
+## 2020-10-27
+
+> - 凌晨5点抵京，还是有点小冷，在公司喝了口热水，扒拉着手机，困得不行，睡了一个小时，白天相对有点效率，推进了相关功能，六点去跑了5公里，真冷（得穿外套跑比较合适），回家收拾一下刷题。  
+* Day51 每日一题推荐：[有效的完全平方数](https://leetcode-cn.com/problems/valid-perfect-square/)  
+* 思路：这道题目还是挺简单的，使用二分法取中值，计算中值的平方是否等于num；还有一种解法是[牛顿迭代法](http://www.matrix67.com/blog/archives/361)
+```bash
+bool isPerfectSquare(int num)
+{
+    int left = 1, right = num;
+    while (left <= right) {
+        long mid = (left + right) / 2;
+        long sqrt = mid * mid;
+        if (sqrt == num) {
+            return true;
+        } else if (sqrt < num) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return false;
+}
+```
+
 ## 2020-10-26
 
 > - 今天一早起床赶飞机，结果说需要核酸检测才行，没办法只能退票，去定点医院做个检测后，等结果出来再买票了，卧铺一晚上（临铺鼾声不停）  
