@@ -1,5 +1,31 @@
 学习笔记
 
+## 2020-10-28
+
+> - 今天一觉睡得挺好，洗漱一下去上班，  
+* Day52 每日一题推荐：[打家劫舍](https://leetcode-cn.com/problems/house-robber/)  
+* 思路：  
+```bash
+int rob(int* nums, int numsSize){
+    if(numsSize == 0) {
+        return 0;
+    }
+
+    if (numsSize == 1) {
+        return nums[0];
+    }
+
+    int first = nums[0], second = fmax(nums[0], nums[1]);
+    for(int i = 2; i < numsSize; i++) {
+        int temp = second;
+        second = fmax(first + nums[i], second);
+        first = temp;
+    }
+    return second;
+}
+```
+
+
 ## 2020-10-27
 
 > - 凌晨5点抵京，还是有点小冷，在公司喝了口热水，扒拉着手机，困得不行，睡了一个小时，白天相对有点效率，推进了相关功能，六点去跑了5公里，真冷（得穿外套跑比较合适），回家收拾一下刷题。  
