@@ -1,5 +1,36 @@
 学习笔记
 
+## 2020-10-31
+
+> - 今天同事离职了，哎，工作的事情不好说，晚上公司重保，加油，青春挥洒热血。。。  
+* Day55每日一题推荐：[数组的相对排序](https://leetcode-cn.com/problems/relative-sort-array/)  
+* 思路：  
+```bash
+int* relativeSortArray(int* arr1, int arr1Size, int* arr2, int arr2Size, int* returnSize){
+#define MAX_SIZE 1024
+    int arr[MAX_SIZE] = {0};
+    int i, j=0;
+    for(i = 0; i < arr1Size; i++){//记录arr1数字出现的次数次数
+        arr[arr1[i]]++;
+    }
+    for(i = 0; i < arr2Size; i++){//找到在arr2和arr1都出现的数字
+        while(arr[arr2[i]] > 0){
+            arr1[j] = arr2[i];
+            j++;
+            arr[arr2[i]]--;
+        }
+    }
+    for(i = 0; i < MAX_SIZE; i++){//找arr1有，arr2没有的
+        while(arr[i] > 0){
+            arr1[j++] = i;
+            arr[i]--;
+        }
+    }
+    *returnSize = arr1Size;
+    return arr1;
+}
+```
+
 ## 2020-10-30
 
 > - 今天工作上详细梳理了全流程，详细的规划了实现过程，哎，年底的冲刺开始了。。。。
