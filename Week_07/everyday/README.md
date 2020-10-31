@@ -1,5 +1,39 @@
 学习笔记
 
+## 2020-10-30
+
+> - 今天工作上详细梳理了全流程，详细的规划了实现过程，哎，年底的冲刺开始了。。。。
+* Day 54每日一题推荐：[两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)  
+* 思路：  
+```bash
+struct ListNode* swapPairs(struct ListNode* head){
+    // 增加第一个节点
+    struct ListNode* first = malloc(sizeof(struct ListNode));
+    first->next = head;
+    struct ListNode* result = first;
+    while (head && head->next != NULL) {
+        // second
+        first->next = head->next;
+        // third
+        struct ListNode* third = head->next->next;
+
+        //reverse
+        first->next->next = head;
+        head->next = third;
+
+        /*
+            | first | head   | 
+            | first | second | third |
+        */
+        //reset
+        first = head;
+        head = head->next;
+    }
+
+    return result->next;
+}
+```
+
 ## 2020-10-29 
 
 > - 昨晚熬夜值班了，睡得有点晚，还是习惯一早起来，到公司开始一天的工作，今天效率有点低，梳理了一下近期的工作内容，方案上还是需要讨论充分后再动手做，下午重新梳理，对了一下实现细节。。。  
