@@ -1,5 +1,72 @@
 学习笔记
 
+## 2020-11-01
+
+> - 今天睡了一上午，哎，老是值班，中午洗衣服/拖地，好吧，收拾收拾，我的小屋还挺冷的，看了一下王者直播，哎，该死的时间过的好快////  
+* Day56每日一题推荐：[最长重复子数组](https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/)  
+* 思路：  
+> - 方法一：// 滑动窗口
+/* 枚举 A 和 B 所有的对齐方式。对齐的方式有两类：
+   第一类为 A 不变，B 的首元素与 A 中的某个元素对齐；
+   第二类为 B 不变，A 的首元素与 B 中的某个元素对齐。
+   对于每一种对齐方式，我们计算它们相对位置相同的重复子数组即可。
+*/
+```bash
+int maxLength(int* A, int* B, int addA, int addB, int len) {
+    int ret = 0, k = 0;
+    for (int i = 0; i < len; i++) {
+        //相对位置相同的重复子数组
+        if (A[addA + i] == B[addB + i]) {
+            k++;
+        } else {
+            k = 0;
+        }
+        ret = fmax(ret, k);
+    }
+    return ret;
+}
+
+// 滑动窗口
+/* 枚举 A 和 B 所有的对齐方式。对齐的方式有两类：
+   第一类为 A 不变，B 的首元素与 A 中的某个元素对齐；
+   第二类为 B 不变，A 的首元素与 B 中的某个元素对齐。
+   对于每一种对齐方式，我们计算它们相对位置相同的重复子数组即可。
+*/
+int findLength(int* A, int ASize, int* B, int BSize) {
+    int ret = 0;
+    for (int i = 0; i < ASize; i++) {
+        //第一类
+        int len = fmin(BSize, ASize - i);
+        int maxlen = maxLength(A, B, i, 0, len);
+        ret = fmax(ret, maxlen);
+    }
+
+    for (int i = 0; i < BSize; i++) {
+        //第二类
+        int len = fmin(ASize, BSize - i);
+        int maxlen = maxLength(A, B, 0, i, len);
+        ret = fmax(ret, maxlen);
+    }
+    return ret;
+}
+```
+> - 方法二： 动态规划   
+```bash
+int findLength(int* A, int ASize, int* B, int BSize) {
+    int dp[ASize + 1][BSize + 1];
+    memset(dp, 0, sizeof(dp));
+    int ans = 0;
+    for (int i = ASize - 1; i >= 0; i--) {
+        for (int j = BSize - 1; j >= 0; j--) {
+            dp[i][j] = A[i] == B[j] ? dp[i + 1][j + 1] + 1 : 0;
+            ans = fmax(ans, dp[i][j]);
+        }
+    }
+    return ans;
+}
+
+```
+
 ## 2020-10-31
 
 > - 今天同事离职了，哎，工作的事情不好说，晚上公司重保，加油，青春挥洒热血。。。  
