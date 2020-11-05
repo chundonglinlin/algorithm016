@@ -1,8 +1,68 @@
 学习笔记
 
+## 2020-11-05
+
+> - 今天把相关的直播链路优化打通了，明天提测，加油，刷题。。。
+* Day 60每日一题推荐：[最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+* 思路：  
+ > - 方法一：动态规划，双层循环
+ ```bash
+ int lengthOfLIS(int* nums, int numsSize){
+    if (numsSize == 0) {
+        return 0;
+    }
+    // 动态规划
+    int dp[numsSize];
+    dp[0] = 1;
+    int maxans = 1;
+    for (int i = 1; i < numsSize; i++) {
+        dp[i] = 1;
+        for (int j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                dp[i] = fmax(dp[i], dp[j] + 1);
+            }
+        }
+        maxans = fmax(maxans, dp[i]);
+    }
+    return maxans;
+}
+ ```
+> - 方法二：动态规划+二分查找，单层循环，提高时间复杂度
+```bash
+int lengthOfLIS(int *nums, int numsSize)
+{
+    int len = 1, n = numsSize;
+    if (n == 0) {
+        return 0;
+    }
+
+    // 动态规划 + 二分查找
+    int dp[n + 1];
+    dp[len] = nums[0];
+    for (int i = 1; i < n; ++i) {
+        if (nums[i] > dp[len]) {
+            dp[++len] = nums[i];
+        } else {
+            int l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 dp[1]，所以这里将 pos 设为 0
+            while (l <= r) {
+                int mid = (l + r) >> 1;
+                if (dp[mid] < nums[i]) {
+                    pos = mid;
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            dp[pos + 1] = nums[i];
+        }
+    }
+    return len;
+}
+```
+
 ## 2020-11-04
 
-> - 今天效率很高，刷图
+> - 今天效率很高，刷题目。。。
 * Day59 每日一题推荐：[反转字符串 II](https://leetcode-cn.com/problems/reverse-string-ii/)
 * 思路：  
 ```bash
