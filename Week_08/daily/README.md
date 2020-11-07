@@ -1,5 +1,40 @@
 学习笔记
 
+## 2020-11-07
+
+> - 今早5点半到家，哎，坐夜车就是累，白天睡觉陪娃完会，现在刷题交作业。
+* Day 62每日一题推荐：[验证回文字符号串II](https://leetcode-cn.com/problems/valid-palindrome-ii/)
+* 思路：头尾开始比较，当遇到不相同时，开始比较子串是否回文串
+```bash
+bool checkSubString(char *s, int left, int right)
+{
+    while (left < right) {
+        if (s[left] == s[right]) {
+            left++;
+            right--;
+        } else {
+            return false;
+        }
+    }
+    
+    return true;
+}
+bool validPalindrome(char *s)
+{
+    int left = 0, right = strlen(s) - 1;
+    while (left < right) {
+        if (s[left] == s[right]) {
+            left++;
+            right--;
+        } else {
+            //返回子串
+            return checkSubString(s, left + 1, right) || checkSubString(s, left, right - 1);
+        }
+    }
+    return true;
+}
+```
+
 ## 2020-11-06
 
 > - 今天终于提测了，哎，开发效率太低了，刷刷题，晚上回家。。。  
