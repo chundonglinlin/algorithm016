@@ -1,5 +1,66 @@
 学习笔记
 
+## 2020-11-08
+
+> - 今天起的很晚，陪娃玩会，然后再一起吃饭、作业，刷题。。。
+* Day 62每日一题推荐：[最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/)
+* 思路：  
+> - 方法一：需遍历整个字符串一次，即可将 \textit{dp}dp 数组求出来
+```bash
+int longestValidParentheses(char* s) {
+    int maxans = 0, n = strlen(s);
+    if (n == 0) return 0;
+    int dp[n];
+    memset(dp, 0, sizeof(dp));
+    for (int i = 1; i < n; i++) {
+        if (s[i] == ')') {
+            if (s[i - 1] == '(') {
+                dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+            } else if (i - dp[i - 1] > 0 && s[i - dp[i - 1] - 1] == '(') {
+                dp[i] = dp[i - 1] +
+                        ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+            }
+            maxans = fmax(maxans, dp[i]);
+        }
+    }
+    return maxans;
+}
+```
+
+> - 方法二：要正反遍历两边字符串即可
+```bash
+int longestValidParentheses(char* s) {
+    int n = strlen(s);
+    int left = 0, right = 0, maxlength = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '(') {
+            left++;
+        } else {
+            right++;
+        }
+        if (left == right) {
+            maxlength = fmax(maxlength, 2 * right);
+        } else if (right > left) {
+            left = right = 0;
+        }
+    }
+    left = right = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (s[i] == '(') {
+            left++;
+        } else {
+            right++;
+        }
+        if (left == right) {
+            maxlength = fmax(maxlength, 2 * left);
+        } else if (left > right) {
+            left = right = 0;
+        }
+    }
+    return maxlength;
+}
+```
+
 ## 2020-11-07
 
 > - 今早5点半到家，哎，坐夜车就是累，白天睡觉陪娃完会，现在刷题交作业。
