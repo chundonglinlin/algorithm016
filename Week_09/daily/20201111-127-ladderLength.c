@@ -1,73 +1,21 @@
-学习笔记
-
-## 2020-11-12
-
-> - 
-* Day 67每日一题推荐：[全排列](https://leetcode-cn.com/problems/permutations/)
-* 思路：  
-```bash
-void CopyDate(int *ans, int *nums, int numsSize)
-{
-    for (int i = 0; i < numsSize; i++) {
-        ans[i] = nums[i];
-    }
-
-    return;
-}
-
-void Swap(int *a, int *b)
-{
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-void compute(int *nums, int numsSize, int index, int **arr, int *row)
-{
-    if (index == numsSize - 1) {
-        arr[*row] = (int *)malloc(numsSize * sizeof(int));
-        CopyDate(arr[(*row)++], nums, numsSize);
-        return;
-    }
-
-    for (int i = index; i < numsSize; i++) {
-        Swap(&nums[index], &nums[i]);
-        compute(nums, numsSize, index + 1, arr, row);
-        Swap(&nums[i], &nums[index]);
-    }
-
-    return;
-}
-
-int** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
-{
-    *returnSize = 0;
-    if (nums == NULL || numsSize == 0) {
-        return NULL;
-    }
-
-#define MAX_SIZE 10000
-    int **arr = (int **)malloc(MAX_SIZE * sizeof(int *));
-    int *cols = (int *)malloc(MAX_SIZE * sizeof(int));
-
-    compute(nums, numsSize, 0, arr, returnSize);
-
-    for (int i = 0; i < *returnSize; i++) {
-        cols[i] = numsSize;
-    }
-    *returnColumnSizes = cols;
-
-    return arr;
-}
-```
-
-
-## 2020-11-11
-
-> - 熬夜值班，赶进度，数据上大屏幕，刷刷。。。
-* Day 66 每日一题推荐：[单词接龙](https://leetcode-cn.com/problems/word-ladder/description/)
-* 思路：  
-```bash
+/*
+ * =====================================================================================
+ *
+ *       Filename:  20201111-127-ladderLength.c
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  2020/11/12 21时31分40秒
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+#include <stdlib.h>
 struct Trie {
     int ch[27];
     int val;
@@ -182,54 +130,3 @@ int ladderLength(char* beginWord, char* endWord, char** wordList, int wordListSi
     }
     return 0;
 }
-```
-
-## 2020-11-10
-
-> - 一年一度的双十一来了，熬夜值班备战，来吧
-* Day 65每日一题推荐：[三角形最小路径和](https://leetcode-cn.com/problems/triangle/)
-* 思路：动态规划
-```
-int minimumTotal(int** triangle, int triangleSize, int* triangleColSize) {
-    // 动态规划
-    int f[2][triangleSize];
-    memset(f, 0, sizeof(f));
-    f[0][0] = triangle[0][0];
-    for (int i = 1; i < triangleSize; ++i) {
-        int curr = i % 2;
-        int prev = 1 - curr;
-        f[curr][0] = f[prev][0] + triangle[i][0];
-        for (int j = 1; j < i; ++j) {
-            f[curr][j] = fmin(f[prev][j - 1], f[prev][j]) + triangle[i][j];
-        }
-        f[curr][i] = f[prev][i - 1] + triangle[i][i];
-    }
-    int ret = f[(triangleSize - 1) % 2][0];
-    for (int i = 1; i < triangleSize; i++) {
-        ret = fmin(ret, f[(triangleSize - 1) % 2][i]);
-    }
-    return ret;
-}
-```
-
-## 2020-11-09
-
-> - 今天回来上班，哎，早起赶车，路上玩手机，加油加油，
-* Day 64每日一题推荐：[删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)  
-* 思路：1）有序 2）相邻元素比较即可  
-```bash
-struct ListNode* deleteDuplicates(struct ListNode* head){
-{
-    struct ListNode *temp = head;
-    while (temp && temp->next) {
-        struct ListNode *next = temp->next;
-        if (temp->val == next->val) {
-            temp->next = next->next;
-            free(next);
-        } else {
-            temp = next;
-        }
-    }
-    return head;
-}
-```
