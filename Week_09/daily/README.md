@@ -1,5 +1,65 @@
 学习笔记
 
+## 2020-11-14
+
+> - 周六了，起不来呀/睡不醒，睡得晚一天没精神，只能下午起来做作业了，刷刷题。。。
+* Day 69每日一题推荐：[除自身以外数组的乘积](https://leetcode-cn.com/problems/product-of-array-except-self/)
+* 思路：遍历三遍，计算每个元素左侧的乘积，计算每个元素右侧的乘积，最后再左右相乘  
+```bash
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* productExceptSelf(int* nums, int numsSize, int* returnSize){
+	*returnSize = 0;
+    if (nums == NULL || numsSize <= 0) {
+		return NULL;
+	}
+
+    int n = numsSize;
+	int *result = (int *)malloc(sizeof(int) * n);
+	if (result == NULL) {
+		return NULL;
+	}
+
+	int left[n], right[n];
+
+    // i元素左侧的乘积
+    left[0] = 1;
+	for (int i = 1; i < n; i++) {
+		left[i] = left[i - 1] * nums[i - 1];
+	}
+
+    // 右侧乘积
+	right[n - 1] = 1;
+	for (int i = n - 2; i >= 0; i--) {
+		right[i] = right[i + 1] * nums[i + 1];
+	}
+
+    // 两侧乘积
+	for (int i = 0; i < n; i++) {
+		result[i] = left[i] * right[i] ;
+	}
+	*returnSize = n;
+	return result;
+}
+```
+
+## 2020-11-13
+
+> - 周五没有写周报，团建，哎，玩游戏，忘记刷题了。。。
+* Day68 每日一题推荐：[买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+* 思路： 贪心算法，图当前挣钱再出手  
+```bash
+int maxProfit(int* prices, int pricesSize){
+    int maxprofit = 0;
+    for (int i = 1; i < pricesSize; i++) {
+        if (prices[i] > prices[i - 1])
+            maxprofit += prices[i] - prices[i - 1];
+    }
+    return maxprofit;
+}
+```
+
 ## 2020-11-12
 
 > - 
