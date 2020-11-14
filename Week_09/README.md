@@ -10,7 +10,7 @@
 > - [最小路径和（字节跳动、谷歌、亚马逊在半年内面试中考过）](https://leetcode-cn.com/problems/minimum-path-sum/)
 > - [股票买卖（字节跳动、亚马逊、Facebook 在半年内面试常考）](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
 
-* **课后作业
+* **课后作业**
 > - 在学习总结中，[写出不同路径 2](https://leetcode-cn.com/problems/unique-paths-ii/) 这道题目的状态转移方程。
 * 思路：方法一：动态规划
 
@@ -38,14 +38,14 @@ int uniquePathsWithObstacles(int** obstacleGrid, int obstacleGridSize,
 ```
 
 ### 2. 高级动态规划题目详解
-* **参考链接
+* **参考链接**
 > - [爬楼梯（阿里巴巴、腾讯、字节跳动在半年内面试常考）](https://leetcode-cn.com/problems/climbing-stairs/)
 
 > - [使用最小花费爬楼梯（亚马逊在半年内面试中考过）](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
 
 > - [编辑距离（字节跳动、亚马逊、谷歌在半年内面试中考过）](https://leetcode-cn.com/problems/edit-distance/)
 
-* **课后作业
+* **课后作业**
 > - [最长上升子序列（字节跳动、亚马逊、微软在半年内面试中考过）](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
 
 > - [解码方法（Facebook、亚马逊、字节跳动在半年内面试中考过）](https://leetcode-cn.com/problems/decode-ways/)
@@ -119,19 +119,25 @@ int myAtoi(string str) {
 
 * **简单**
 
-> - [字符串中的第一个唯一字符（亚马逊、微软、Facebook 在半年内面试中考过）](https://leetcode-cn.com/problems/first-unique-character-in-a-string/)
+> - [字符串中的第一个唯一字符（亚马逊、微软、Facebook 在半年内面试中考过）](https://leetcode-cn.com/problems/first-unique-character-in-a-string/)  
 [387-firstUniqChar](weekend/01-387-firstUniqChar.c)
-> - [反转字符串 II （亚马逊在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-string-ii/)
+
+> - [反转字符串 II （亚马逊在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-string-ii/)  
 [541-reverseStr.c](weekend/02-541-reverseStr.c)
-> - [翻转字符串里的单词（微软、字节跳动、苹果在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string/submissions/)
+
+> - [翻转字符串里的单词（微软、字节跳动、苹果在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string/submissions/)  
 [151-reverseWords.c)](weekend/03-151-reverseWords.c)
-> - [反转字符串中的单词 III （微软、字节跳动、华为在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/submissions/)
+
+> - [反转字符串中的单词 III （微软、字节跳动、华为在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/submissions/)  
 [557-reverseWords.c](weekend/04-557-reverseWords.c)
-> - [仅仅反转字母（字节跳动在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-only-letters/)
+
+> - [仅仅反转字母（字节跳动在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-only-letters/)  
 [917-reverseOnlyLetters.c](weekend/05-917-reverseOnlyLetters.c)
-> - [同构字符串（谷歌、亚马逊、微软在半年内面试中考过）](https://leetcode-cn.com/problems/isomorphic-strings/)
+
+> - [同构字符串（谷歌、亚马逊、微软在半年内面试中考过）](https://leetcode-cn.com/problems/isomorphic-strings/)  
 [205-isIsomorphic.c](weekend/06-205-isIsomorphic.c)
-> - [验证回文字符串 Ⅱ（Facebook 在半年内面试中常考）](https://leetcode-cn.com/problems/valid-palindrome-ii/)
+
+> - [验证回文字符串 Ⅱ（Facebook 在半年内面试中常考）](https://leetcode-cn.com/problems/valid-palindrome-ii/)  
 [680-validPalindrome.c)](weekend/07-680-validPalindrome.c)
 
 
