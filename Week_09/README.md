@@ -119,13 +119,21 @@ int myAtoi(string str) {
 
 * **简单**
 
-> - [字符串中的第一个唯一字符（亚马逊、微软、Facebook 在半年内面试中考过）]()
-> - [反转字符串 II （亚马逊在半年内面试中考过）]()
-> - [翻转字符串里的单词（微软、字节跳动、苹果在半年内面试中考过）]()
-> - [反转字符串中的单词 III （微软、字节跳动、华为在半年内面试中考过）]()
-> - [仅仅反转字母（字节跳动在半年内面试中考过）]()
-> - [同构字符串（谷歌、亚马逊、微软在半年内面试中考过）]()
-> - [验证回文字符串 Ⅱ（Facebook 在半年内面试中常考）]()
+> - [字符串中的第一个唯一字符（亚马逊、微软、Facebook 在半年内面试中考过）](https://leetcode-cn.com/problems/first-unique-character-in-a-string/)
+[387-firstUniqChar](weekend/01-387-firstUniqChar.c)
+> - [反转字符串 II （亚马逊在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-string-ii/)
+[541-reverseStr.c](weekend/02-541-reverseStr.c)
+> - [翻转字符串里的单词（微软、字节跳动、苹果在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string/submissions/)
+[151-reverseWords.c)](weekend/03-151-reverseWords.c)
+> - [反转字符串中的单词 III （微软、字节跳动、华为在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/submissions/)
+[557-reverseWords.c](weekend/04-557-reverseWords.c)
+> - [仅仅反转字母（字节跳动在半年内面试中考过）](https://leetcode-cn.com/problems/reverse-only-letters/)
+[917-reverseOnlyLetters.c](weekend/05-917-reverseOnlyLetters.c)
+> - [同构字符串（谷歌、亚马逊、微软在半年内面试中考过）](https://leetcode-cn.com/problems/isomorphic-strings/)
+[205-isIsomorphic.c](weekend/06-205-isIsomorphic.c)
+> - [验证回文字符串 Ⅱ（Facebook 在半年内面试中常考）](https://leetcode-cn.com/problems/valid-palindrome-ii/)
+[680-validPalindrome.c)](weekend/07-680-validPalindrome.c)
+
 
 * **中等**
 
