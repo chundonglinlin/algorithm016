@@ -1,5 +1,61 @@
 学习笔记
 
+## 2020-11-15
+
+> - 今天起来晚了，洗洗刷刷，然后就准备和哥几个吃个饭，下午一直打游戏了（真是天赋不足，老拖后腿），晚上说孩子发烧了，不知道什么原因导致的（大概率着凉了，孩子不愿意穿的那么厚），刷刷题吧。。。
+* Day 70每日一题推荐：滑动窗口的最大值
+* 思路：  
+    > 滑动窗口，动态规划。  
+    从左到右遍历数组，建立数组 left。  
+    从右到左遍历数组，建立数组 right。  
+    建立输出数组 max(right[i], left[i + k - 1])，其中 i 取值范围为 (0, n - k + 1)。  
+```bash
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* maxSlidingWindow(int* nums, int numsSize, int k, int* returnSize){
+    int n = numsSize;
+    if (n == 0) {
+        *returnSize = 0;
+        return NULL;
+    }
+
+    if (k == 1) {
+        *returnSize = n;
+        return nums;
+    }
+
+    int *left = malloc(sizeof(int) * n);
+    left[0] = nums[0];
+    int *right = malloc(sizeof(int) * n);
+    right[n - 1] = nums[n - 1];
+    for (int i = 1; i < n; i++) {
+        // from left to right
+        if (i % k == 0) {
+            left[i] = nums[i];  // block_start
+        } else {
+            left[i] = fmax(left[i - 1], nums[i]);
+        }
+
+        // from right to left
+        int j = n - i - 1;
+        if ((j + 1) % k == 0) {
+            right[j] = nums[j];  // block_end
+        } else {
+            right[j] = fmax(right[j + 1], nums[j]);
+        }
+    }
+
+    *returnSize = n - k + 1;
+    int *result = malloc(sizeof(int) * (*returnSize));
+    for (int i = 0; i < (*returnSize); i++) {
+        result[i] = fmax(left[i + k - 1], right[i]);
+    }
+
+    return result;
+}
+```
+
 ## 2020-11-14
 
 > - 周六了，起不来呀/睡不醒，睡得晚一天没精神，只能下午起来做作业了，刷刷题。。。
